@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nguyễn Đình Đức — IMC & Brand Marketing Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────────────────── */
+:root{
+  --bg-deep:#080C17; --bg-surface:#0D1425; --bg-card:#10182A; --bg-card-h:#141F33;
+  --gold:#C8AA6E; --gold-bright:#F0E6D3; --gold-dim:rgba(200,170,110,.18);
+  --gold-border:rgba(200,170,110,.22);
+  --teal:#0AC8B9; --teal-dim:rgba(10,200,185,.12);
+  --text-1:#EDE3CF; --text-2:#9FAABB; --text-3:#5E6E82;
+  --border:rgba(255,255,255,.055);
+  --d:'Cinzel',serif; --h:'Barlow Condensed',sans-serif; --b:'Inter',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg-deep);color:var(--text-1);font-family:var(--b);overflow-x:hidden;line-height:1.65}
+a{text-decoration:none}
+
+/* ── NAV ────────────────────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 64px;
+  background:linear-gradient(to bottom,rgba(8,12,23,.95),transparent);
+  backdrop-filter:blur(10px);transition:background .3s,border-color .3s;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{background:rgba(8,12,23,.97);border-bottom-color:var(--border)}
+.nav-logo{font-family:var(--d);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{
+  font-family:var(--h);font-size:12px;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--text-2);transition:color .2s
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:24px}
+
+/* lang toggle */
+.lang-toggle{display:flex;align-items:center;gap:2px}
+.lang-btn{
+  background:none;border:none;cursor:pointer;
+  font-family:var(--h);font-size:11px;font-weight:700;
+  letter-spacing:.18em;color:var(--text-3);padding:5px 7px;
+  border-radius:2px;transition:color .2s,background .2s
+}
+.lang-btn:hover{color:var(--text-1)}
+.lang-btn.active{color:var(--gold)}
+.lang-sep{color:var(--text-3);font-size:10px;opacity:.5}
+
+/* ── HERO ───────────────────────────────────────────────────── */
+.hero{
+  position:relative;height:100vh;min-height:680px;
+  display:flex;align-items:center;justify-content:center;overflow:hidden
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 20%,rgba(200,170,110,.07) 0%,transparent 55%),
+    radial-gradient(ellipse 55% 45% at 75% 75%,rgba(10,200,185,.05) 0%,transparent 50%),
+    var(--bg-deep)
+}
+.hero-video-wrap{
+  position:absolute;inset:-2%;
+  overflow:hidden;pointer-events:none;z-index:0
+}
+.hero-video{
+  width:100%;height:100%;object-fit:cover;
+  filter:blur(2px) brightness(.72) saturate(1);
+  opacity:.7;transform:scale(1.06)
+}
+.hero-hex{
+  position:absolute;inset:0;opacity:.065;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='104'%3E%3Cpolygon points='30,2 58,17 58,47 30,62 2,47 2,17' fill='none' stroke='%23C8AA6E' stroke-width='.9'/%3E%3Cpolygon points='30,52 58,67 58,97 30,112 2,97 2,67' fill='none' stroke='%23C8AA6E' stroke-width='.9'/%3E%3C/svg%3E");
+  background-size:60px 104px
+}
+.hero-vignette{
+  position:absolute;inset:0;z-index:2;
+  background:
+    linear-gradient(to bottom,rgba(8,12,23,.18),rgba(8,12,23,.32)),
+    radial-gradient(ellipse 80% 80% at 50% 50%,transparent 46%,rgba(8,12,23,.48) 100%)
+}
+.hero-fade{
+  position:absolute;bottom:0;left:0;right:0;height:180px;z-index:3;
+  background:linear-gradient(to bottom,transparent,var(--bg-deep))
+}
+.hero-content{position:relative;z-index:4;text-align:center;padding:0 32px;max-width:1000px}
+.hero-eyebrow{
+  font-family:var(--h);font-size:12px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--teal);margin-bottom:30px;
+  animation:fadeD .8s ease both
+}
+.hero-name-wrap{position:relative;display:inline-block;margin-bottom:6px}
+.hero-name-wrap::before,.hero-name-wrap::after{
+  content:'';position:absolute;width:22px;height:22px;
+  border-color:var(--gold);border-style:solid;opacity:.55;
+  animation:fadeU .6s ease .9s both
+}
+.hero-name-wrap::before{top:-10px;left:-20px;border-width:1.5px 0 0 1.5px}
+.hero-name-wrap::after{bottom:-4px;right:-20px;border-width:0 1.5px 1.5px 0}
+.hero-name{
+  font-family:var(--d);font-size:clamp(44px,7.5vw,88px);
+  font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--gold-bright);line-height:.95;animation:fadeU .9s ease .2s both
+}
+.hero-sub{
+  font-family:var(--d);font-size:clamp(13px,2vw,20px);font-weight:400;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:36px;
+  animation:fadeU .8s ease .45s both
+}
+.hero-rule{
+  width:110px;height:1px;margin:0 auto 36px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+  animation:scaleX .7s ease .65s both
+}
+.hero-tagline{
+  font-family:var(--h);font-size:clamp(15px,1.8vw,19px);font-weight:300;
+  letter-spacing:.04em;color:var(--text-2);line-height:1.75;
+  max-width:560px;margin:0 auto 50px;animation:fadeU .7s ease .75s both
+}
+.hero-tagline em{font-style:normal;color:var(--gold)}
+.hero-btns{
+  display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;
+  animation:fadeU .6s ease .9s both
+}
+.btn{
+  display:inline-block;padding:13px 36px;
+  font-family:var(--h);font-size:12px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+  cursor:pointer;border:none;transition:transform .18s,background .18s,color .18s
+}
+.btn:hover{transform:translateY(-3px)}
+.btn-gold{background:var(--gold);color:var(--bg-deep)}
+.btn-gold:hover{background:var(--gold-bright)}
+.btn-ghost{background:transparent;border:1px solid var(--gold-border);color:var(--gold)}
+.btn-ghost:hover{background:var(--gold-dim);color:var(--gold-bright)}
+.scroll-hint{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--text-3);font-family:var(--h);font-size:10px;letter-spacing:.2em;text-transform:uppercase
+}
+.scroll-hint-line{
+  width:1px;height:44px;
+  background:linear-gradient(to bottom,var(--gold),transparent);
+  animation:pulse 2s ease-in-out infinite
+}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* ── SECTION BASE ───────────────────────────────────────────── */
+.wrap{max-width:1220px;margin:0 auto;padding:0 64px}
+.sec{padding:104px 0}
+.sec-full{padding:104px 64px}
+.sec-eye{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--h);font-size:11px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--teal);margin-bottom:14px
+}
+.sec-eye::before{content:'';width:28px;height:1px;background:var(--teal)}
+.sec-title{
+  font-family:var(--d);font-size:clamp(26px,3.8vw,42px);
+  font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--gold-bright);margin-bottom:60px;position:relative;display:inline-block
+}
+.sec-title::after{
+  content:'';position:absolute;bottom:-12px;left:0;
+  width:48px;height:2px;background:linear-gradient(to right,var(--gold),transparent)
+}
+
+/* ── ABOUT ──────────────────────────────────────────────────── */
+.about-bg,.brands,.pkg-bg,.port-bg,.contact-bg{
+  position:relative;overflow:hidden
+}
+.about-bg::before,.brands::before,.pkg-bg::before,.port-bg::before,.contact-bg::before,
+.about-bg::after,.brands::after,.pkg-bg::after,.port-bg::after,.contact-bg::after{
+  content:'';position:absolute;left:-18%;right:-18%;height:1px;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(90deg,rgba(200,170,110,.16),rgba(200,170,110,.16)),
+    linear-gradient(90deg,rgba(200,170,110,0) 0%,rgba(240,230,211,.98) 22%,rgba(200,170,110,.42) 45%,rgba(200,170,110,0) 70%);
+  background-repeat:no-repeat,no-repeat;
+  background-size:100% 1px,22% 1px;
+  background-position:0 0,-25% 0;
+  opacity:.58;filter:drop-shadow(0 0 10px rgba(200,170,110,.16));
+  animation:
+    sectionLineDrift var(--line-drift-duration, 13s) ease-in-out infinite var(--line-drift-delay, 0s),
+    sectionLightSweep var(--line-sweep-duration, 6.8s) ease-in-out infinite var(--line-sweep-delay, 0s)
+}
+.about-bg::before,.brands::before,.pkg-bg::before,.port-bg::before,.contact-bg::before{top:0}
+.about-bg::after,.brands::after,.pkg-bg::after,.port-bg::after,.contact-bg::after{
+  bottom:0;opacity:.34;
+  animation:
+    sectionLineDrift var(--line-drift-duration-bottom, 16s) ease-in-out infinite var(--line-drift-delay-bottom, 0s),
+    sectionLightSweep var(--line-sweep-duration-bottom, 7.6s) ease-in-out infinite var(--line-sweep-delay-bottom, 0s);
+  animation-direction:reverse,alternate
+}
+.about-bg{background:var(--bg-surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:240px 170px minmax(0,1fr);gap:48px;align-items:start}
+.about-left{display:contents}
+
+/* photo placeholder */
+.photo-wrap{
+  position:relative;width:100%;aspect-ratio:3/4;
+  background:var(--bg-card);border:1px solid var(--gold-border);
+  overflow:hidden;cursor:pointer;transition:border-color .25s,transform .35s ease,box-shadow .35s ease
+}
+.photo-wrap:hover{
+  border-color:var(--gold);
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:0 24px 60px rgba(0,0,0,.36),0 0 24px rgba(200,170,110,.18)
+}
+.photo-wrap::before{
+  content:'';position:absolute;inset:-35%;
+  background:conic-gradient(from 0deg,
+    rgba(200,170,110,0) 0deg,
+    rgba(200,170,110,0) 250deg,
+    rgba(240,230,211,.98) 286deg,
+    rgba(200,170,110,.95) 304deg,
+    rgba(240,230,211,.98) 322deg,
+    rgba(200,170,110,0) 360deg);
+  animation:photoBorderSpin 4.8s linear infinite;
+  opacity:.98;z-index:0;pointer-events:none;
+  filter:blur(.4px) drop-shadow(0 0 10px rgba(240,230,211,.32)) drop-shadow(0 0 20px rgba(200,170,110,.22))
+}
+.photo-wrap::after{
+  content:'';position:absolute;inset:1px;
+  background:var(--bg-card);z-index:0;pointer-events:none
+}
+.photo-corner{position:absolute;width:18px;height:18px;border-color:var(--gold);border-style:solid;z-index:3;opacity:.7}
+.photo-tl{top:12px;left:12px;border-width:1.5px 0 0 1.5px}
+.photo-br{bottom:12px;right:12px;border-width:0 1.5px 1.5px 0}
+.photo-inner{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;
+  background:var(--bg-card);transition:opacity .25s
+}
+.photo-wrap:hover .photo-inner{opacity:.7}
+.photo-wrap:hover #photo-preview{transform:scale(1.035)}
+.photo-inner svg{opacity:.25}
+.photo-hint{
+  font-family:var(--h);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text-3)
+}
+#photo-preview{
+  display:none;position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;object-position:top center;z-index:1;
+  transition:transform .45s ease,filter .45s ease
+}
+.photo-overlay{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(8,12,23,.55);opacity:0;transition:opacity .25s;z-index:2
+}
+.photo-wrap:hover .photo-overlay{opacity:1}
+.photo-overlay-txt{
+  font-family:var(--h);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold-bright)
+}
+
+.stats{display:flex;flex-direction:column;gap:36px;padding-top:6px}
+.stat{border-left:2px solid var(--gold);padding-left:20px}
+.stat-n{font-family:var(--d);font-size:44px;font-weight:700;color:var(--gold);line-height:1}
+.stat-l{font-family:var(--h);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3);margin-top:3px}
+
+.bio p{font-size:15px;color:var(--text-2);line-height:1.85;margin-bottom:18px}
+.bio strong{color:var(--gold);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.tag{
+  padding:5px 13px;border:1px solid var(--gold-border);
+  font-family:var(--h);font-size:11px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--gold);
+  clip-path:polygon(7px 0%,100% 0%,calc(100% - 7px) 100%,0% 100%);
+  transition:background .2s;cursor:default
+}
+.tag:hover{background:var(--gold-dim)}
+
+/* ── BRANDS ─────────────────────────────────────────────────── */
+.brands{
+  background:var(--bg-deep);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:72px 0 88px;
+  position:relative;
+  z-index:3
+}
+.brand-head{text-align:center;max-width:760px;margin:0 auto 44px}
+.brand-head .tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--h);font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--teal);margin-bottom:14px
+}
+.brand-head .tag::before{content:'';width:28px;height:1px;background:var(--teal)}
+.brand-head h2{
+  font-family:var(--d);font-size:clamp(26px,3.8vw,42px);font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--gold-bright);margin-bottom:18px
+}
+.brand-head p{font-size:15px;color:var(--text-2);line-height:1.85}
+.logo-rail{position:relative;display:flex;overflow:hidden;margin-bottom:16px}
+.logo-rail::before,.logo-rail::after{
+  content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none
+}
+.logo-rail::before{left:0;background:linear-gradient(90deg,var(--bg-deep),transparent)}
+.logo-rail::after{right:0;background:linear-gradient(270deg,var(--bg-deep),transparent)}
+.logo-track{display:flex;gap:16px;width:max-content;padding:0 8px;animation:logoScroll 46s linear infinite}
+.logo-rail.rev .logo-track{animation:logoScrollRev 52s linear infinite}
+.logo-rail:hover .logo-track{animation-play-state:paused}
+.logo-item{
+  width:186px;height:72px;flex:0 0 186px;display:flex;align-items:center;justify-content:center;
+  padding:16px 24px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:#fff;color:#0a0d15;
+  box-shadow:0 4px 20px rgba(0,0,0,.25);
+  transition:transform .36s cubic-bezier(.2,.8,.2,1),box-shadow .36s,border-color .36s
+}
+.logo-item:hover{
+  transform:translateY(-10px) scale(1.035);border-color:rgba(200,170,110,.58);
+  box-shadow:0 22px 48px rgba(0,0,0,.42),0 0 28px rgba(200,170,110,.16)
+}
+.logo-item img{display:block;max-width:100%;max-height:38px;object-fit:contain;transition:.3s}
+.logo-item img[src=""],.logo-item img.broken{display:none}
+.logo-item span{
+  font-family:var(--h);font-size:13px;font-weight:700;letter-spacing:.04em;
+  text-align:center;white-space:nowrap;color:#0a0d15;display:none
+}
+.logo-item:has(img.broken) span,.logo-item:has(img[src=""]) span{display:block}
+@keyframes logoScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes logoScrollRev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+/* ── PACKAGES ───────────────────────────────────────────────── */
+.pkg-bg{
+  background:var(--bg-deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border)
+}
+.pkg-bg > *{position:relative;z-index:2}
+.pkg-video-wrap{
+  position:absolute;inset:-2%;
+  overflow:hidden;pointer-events:none;z-index:0
+}
+.pkg-video{
+  width:100%;height:100%;object-fit:cover;
+  filter:blur(2px) brightness(.72) saturate(1);
+  opacity:.7;transform:scale(1.06)
+}
+.pkg-vignette{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(to bottom,rgba(8,12,23,.18),rgba(8,12,23,.32)),
+    radial-gradient(ellipse 80% 80% at 50% 50%,transparent 46%,rgba(8,12,23,.48) 100%)
+}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.pkg-card{background:var(--bg-card);padding:36px 32px;position:relative;overflow:hidden;transition:background .3s}
+.pkg-card::before{
+  content:'';position:absolute;top:0;left:-35%;width:55%;height:2px;
+  background:linear-gradient(90deg,rgba(200,170,110,0),var(--gold),rgba(240,230,211,.95),rgba(200,170,110,0));
+  opacity:.9;filter:drop-shadow(0 0 8px rgba(200,170,110,.45));
+  animation:goldSweep 5.8s linear infinite
+}
+.pkg-card:hover::before,.pkg-card.featured::before{animation-duration:4.2s}
+.pkg-card:hover,.pkg-card.featured{
+  background:var(--bg-card-h);
+  transform:translateY(-8px);
+  box-shadow:0 24px 56px rgba(0,0,0,.34),0 0 26px rgba(200,170,110,.08)
+}
+.pkg-card:hover .pkg-name{color:#fff}
+.pkg-card:hover .pkg-sub{color:#39ddd0}
+.pkg-card:hover .pkg-list li{color:var(--gold-bright)}
+.pkg-card::after{
+  content:'';position:absolute;bottom:16px;right:16px;
+  width:16px;height:16px;
+  border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);
+  opacity:0;transition:opacity .3s
+}
+.pkg-card:hover::after,.pkg-card.featured::after{opacity:.5}
+.pkg-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border:1px solid var(--gold-border);border-radius:50%;
+  font-family:var(--d);font-size:12px;color:var(--gold);margin-bottom:22px
+}
+.pkg-tier{font-family:var(--h);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
+.pkg-name{font-family:var(--d);font-size:19px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gold-bright);margin-bottom:6px}
+.pkg-sub{font-family:var(--h);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:18px}
+.pkg-hr{width:36px;height:1px;background:var(--gold-border);margin-bottom:18px}
+.pkg-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.pkg-list li{font-size:13px;color:var(--text-2);line-height:1.5;display:flex;align-items:flex-start;gap:9px}
+.pkg-list li::before{content:'◆';font-size:5px;color:var(--gold);margin-top:7px;flex-shrink:0}
+
+/* ── PORTFOLIO ──────────────────────────────────────────────── */
+.port-bg{
+  background:
+    radial-gradient(ellipse 70% 30% at 50% 0%,rgba(200,170,110,.08) 0%,transparent 70%),
+    var(--bg-surface)
+}
+.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+.port-card{
+  background:var(--bg-card);padding:44px 40px;
+  position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:300px;
+  transition:background .3s;cursor:default
+}
+.port-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,var(--gold),transparent);opacity:0;transition:opacity .35s
+}
+.port-card{transition:background .3s,transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.port-card:hover{
+  background:var(--bg-card-h);transform:translateY(-10px);
+  box-shadow:0 28px 64px rgba(0,0,0,.36),0 0 28px rgba(200,170,110,.08)
+}
+.port-card:hover::after{opacity:1}
+.port-card::before{
+  content:'';position:absolute;top:16px;left:16px;width:14px;height:14px;
+  border-top:1px solid var(--gold);border-left:1px solid var(--gold);opacity:0;transition:opacity .35s
+}
+.port-card:hover::before{opacity:.6}
+.port-card .port-link{background:rgba(200,170,110,.08)}
+.port-card:hover .port-title{color:#fff}
+.port-card:hover .port-desc{color:var(--gold-bright)}
+.port-card:hover .metric-v{transform:translateY(-2px);color:#fff}
+.port-card:hover .metric-l{color:var(--gold)}
+.port-num{
+  position:absolute;top:28px;right:32px;
+  font-family:var(--d);font-size:52px;font-weight:700;
+  color:rgba(200,170,110,.055);line-height:1;pointer-events:none
+}
+.port-tag{font-family:var(--h);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.port-title{font-family:var(--d);font-size:18px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--gold-bright);line-height:1.3;margin-bottom:14px}
+.port-desc{font-size:14px;color:var(--text-2);line-height:1.78;flex-grow:1;margin-bottom:28px}
+.port-media{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px
+}
+.port-media img{
+  width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid var(--gold-border);
+  background:var(--bg-card-h)
+}
+.port-metrics{display:flex;gap:28px;flex-wrap:wrap}
+.metric{display:flex;flex-direction:column}
+.metric-v{font-family:var(--d);font-size:22px;font-weight:600;color:var(--gold);line-height:1;transition:transform .3s ease,color .3s ease}
+.metric-l{font-family:var(--h);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-top:3px}
+.port-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.port-link{
+  display:inline-block;padding:12px 22px;border:1px solid var(--gold-border);
+  color:var(--gold);font-family:var(--h);font-size:11px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;transition:background .2s,color .2s,transform .2s
+}
+.port-link:hover{background:var(--gold-dim);color:var(--gold-bright);transform:translateY(-2px)}
+
+/* ── CONTACT ────────────────────────────────────────────────── */
+.contact-bg{background:var(--bg-deep);border-top:1px solid var(--border)}
+.contact-bg > *{position:relative;z-index:2}
+.contact-video-wrap{
+  position:absolute;inset:-2%;
+  overflow:hidden;pointer-events:none;z-index:0
+}
+.contact-video{
+  width:100%;height:100%;object-fit:cover;
+  filter:blur(4px) brightness(.48) saturate(.92);
+  opacity:.5;transform:scale(1.08)
+}
+.contact-vignette{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(to bottom,rgba(8,12,23,.34),rgba(8,12,23,.56)),
+    radial-gradient(ellipse 82% 82% at 50% 50%,transparent 38%,rgba(8,12,23,.68) 100%)
+}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:start}
+.contact-copy p{font-size:15px;color:var(--text-2);line-height:1.85;margin-bottom:40px}
+.contact-details{display:flex;flex-direction:column;gap:14px}
+.contact-thanks{
+  margin-top:26px;padding-top:18px;border-top:1px solid var(--gold-border);
+  font-family:var(--h);font-size:15px;font-weight:500;letter-spacing:.03em;
+  color:var(--gold-bright);line-height:1.75;max-width:620px
+}
+.contact-credits{
+  margin-top:18px;max-width:720px
+}
+.contact-credits-copy{
+  font-family:var(--h);font-size:14px;line-height:1.9;color:var(--text-2);
+  margin:0 0 18px
+}
+.contact-credits-copy strong{color:var(--gold-bright);font-weight:600}
+.credit-icon-grid{
+  display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;max-width:760px
+}
+.credit-slot{
+  min-height:56px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:4px 8px 0;gap:8px;transition:transform .24s ease,filter .24s ease
+}
+.credit-slot img{
+  display:block;max-width:100%;max-height:38px;width:auto;height:auto;object-fit:contain;
+  filter:drop-shadow(0 4px 14px rgba(0,0,0,.18))
+}
+.credit-slot:hover{
+  transform:translateY(-3px);
+  filter:brightness(1.08)
+}
+.credit-slot-label{
+  font-family:var(--h);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-3);text-align:center;line-height:1.5
+}
+.credit-slot.logo-html img{max-height:42px}
+.credit-slot.logo-hermes img{max-height:28px}
+.credit-slot.logo-chatgpt img{max-height:35px}
+.credit-slot.logo-codex img{max-height:36px}
+.credit-slot.logo-vscode img{max-height:36px}
+.credit-slot.logo-claude img{max-height:30px}
+.credit-slot.logo-antigravity img{max-height:34px}
+.c-row{display:flex;align-items:flex-start;gap:14px;font-family:var(--h);font-size:14px;letter-spacing:.03em;color:var(--text-2)}
+.c-row span:first-child{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);min-width:72px;padding-top:2px}
+.c-row a{color:var(--text-2);transition:color .2s}
+.c-row a:hover{color:var(--gold)}
+.form{display:flex;flex-direction:column;gap:16px}
+.fg{display:flex;flex-direction:column;gap:7px}
+.fl{font-family:var(--h);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text-3)}
+.fi,.ft{
+  background:var(--bg-card);border:1px solid var(--gold-border);
+  padding:14px 18px;color:var(--text-1);font-family:var(--b);font-size:14px;
+  outline:none;transition:border-color .2s;
+  clip-path:polygon(9px 0%,100% 0%,calc(100% - 9px) 100%,0% 100%)
+}
+.fi:focus,.ft:focus{border-color:var(--gold)}
+.ft{resize:vertical;min-height:128px}
+.fsub{
+  margin-top:8px;padding:16px 40px;background:var(--gold);color:var(--bg-deep);
+  font-family:var(--h);font-size:13px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;border:none;cursor:pointer;align-self:flex-start;
+  clip-path:polygon(9px 0%,100% 0%,calc(100% - 9px) 100%,0% 100%);
+  transition:background .18s,transform .18s
+}
+.fsub:hover{background:var(--gold-bright);transform:translateY(-3px)}
+.fsub:disabled{opacity:.5;cursor:not-allowed;transform:none}
+#form-ok{display:none;color:var(--teal);font-family:var(--h);font-size:13px;letter-spacing:.06em;margin-top:8px}
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+.footer{border-top:1px solid var(--border);padding:28px 64px;display:flex;align-items:center;justify-content:space-between}
+.footer-l{font-family:var(--d);font-size:11px;letter-spacing:.1em;color:var(--text-3)}
+.footer-r{font-family:var(--h);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+
+/* ── REVEAL ─────────────────────────────────────────────────── */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+/* ── HERO KEYFRAMES ─────────────────────────────────────────── */
+@keyframes fadeU{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fadeD{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+@keyframes scaleX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes photoBorderSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes goldSweep{
+  0%{transform:translateX(0);opacity:.25}
+  12%{opacity:1}
+  50%{transform:translateX(240%);opacity:.95}
+  72%{opacity:.35}
+  100%{transform:translateX(430%);opacity:.2}
+}
+@keyframes sectionLineDrift{
+  0%{transform:translateX(-10%) scaleX(.94);opacity:.2}
+  50%{transform:translateX(10%) scaleX(1.03);opacity:.8}
+  100%{transform:translateX(-10%) scaleX(.94);opacity:.2}
+}
+@keyframes sectionLightSweep{
+  0%{background-position:0 0,-25% 0}
+  50%{background-position:0 0,103% 0}
+  100%{background-position:0 0,-25% 0}
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media(max-width:960px){
+  .nav{padding:16px 24px}.nav-links{display:none}
+  .wrap,.sec-full{padding:0 24px}
+  .sec{padding:72px 0}.sec-full{padding:72px 24px}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .about-left{display:flex;flex-direction:row;flex-wrap:wrap;gap:24px;align-items:flex-start}
+  .photo-wrap{width:160px;flex-shrink:0}
+  .stats{flex-direction:row;flex-wrap:wrap;gap:24px}
+  .brands{padding:56px 0 68px}
+  .logo-item{width:150px;height:64px;flex-basis:150px;padding:14px 18px}
+  .logo-item img{max-height:32px}
+  .pkg-grid{grid-template-columns:1fr;gap:2px}
+  .port-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr;gap:52px}
+  .credit-icon-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .footer{padding:20px 24px;flex-direction:column;gap:6px;text-align:center}
+}
+@media(max-width:560px){
+  .credit-icon-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .logo-track{animation:logoScroll 46s linear infinite!important}
+  .logo-rail.rev .logo-track{animation:logoScrollRev 52s linear infinite!important}
+  .about-bg::before,.brands::before,.pkg-bg::before,.port-bg::before,.contact-bg::before,
+  .about-bg::after,.brands::after,.pkg-bg::after,.port-bg::after,.contact-bg::after{
+    animation:
+      sectionLineDrift var(--line-drift-duration, 20s) ease-in-out infinite var(--line-drift-delay, 0s),
+      sectionLightSweep var(--line-sweep-duration, 9s) ease-in-out infinite var(--line-sweep-delay, 0s)!important
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">Self code Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#capabilities" data-i18n="nav.cap">Capabilities</a></li>
+    <li><a href="#work" data-i18n="nav.work">Case Studies</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="resume.html" class="btn btn-ghost" style="padding:10px 18px" aria-label="Open resume">Resume</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg"></div>
+  <div class="hero-video-wrap" aria-hidden="true">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+      <source src="assets/aov-arena-of-valor.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-hex" aria-hidden="true"></div>
+  <div class="hero-vignette" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Brand Marketing Manager · IMC Portfolio · English Edition</p>
+    <div class="hero-name-wrap">
+      <h1 class="hero-name">Nguyen Dinh Duc</h1>
+    </div>
+    <p class="hero-sub" data-i18n="hero.sub">6+ Years · IMC Planning · Brand &amp; Growth</p>
+    <div class="hero-rule" aria-hidden="true"></div>
+    <p class="hero-tagline" data-i18n="hero.tagline" data-rich="1">
+      Building <em>integrated campaigns with clear business impact</em> — from annual planning,
+      go-to-market strategy, and KOL orchestration to content systems, sales activation, and performance analysis.
+    </p>
+    <div class="hero-btns">
+      <a href="#work" class="btn btn-gold" data-i18n="hero.btn1">View Case Studies</a>
+      <a href="resume.html" class="btn btn-ghost" data-i18n="hero.btn2">View Resume</a>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-hint-line"></div>
+  </div>
+  <div class="hero-fade" aria-hidden="true"></div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands" id="brands">
+  <div class="wrap">
+    <div class="brand-head rv">
+      <span class="tag">/ Brand Collaborations</span>
+      <h2>Brands I've <span class="serif-it">worked with</span></h2>
+      <p>Selected brand, agency, retail, and platform collaborations that reflect the breadth of industries I have planned, launched, or executed across.</p>
+    </div>
+
+    <div class="logo-rail">
+      <div class="logo-track">
+        <div class="logo-item"><img src="Logo/acecook logo.webp" alt="Acecook"><span>Acecook</span></div>
+        <div class="logo-item"><img src="Logo/Bellhome logo.webp" alt="Bellhome"><span>Bellhome</span></div>
+        <div class="logo-item"><img src="Logo/BIDV logo.webp" alt="BIDV"><span>BIDV</span></div>
+        <div class="logo-item"><img src="Logo/Colgate logo.webp" alt="Colgate"><span>Colgate</span></div>
+        <div class="logo-item"><img src="Logo/Cooken logo.webp" alt="Cooken"><span>Cooken</span></div>
+        <div class="logo-item"><img src="Logo/ctd.webp" alt="Coteccons"><span>Coteccons</span></div>
+        <div class="logo-item"><img src="Logo/Hasuta Logo.webp" alt="Hasuta"><span>Hasuta</span></div>
+        <div class="logo-item"><img src="Logo/henessy logo.webp" alt="Hennessy"><span>Hennessy</span></div>
+        <div class="logo-item"><img src="Logo/Himalaya logo.webp" alt="Himalaya"><span>Himalaya</span></div>
+        <div class="logo-item"><img src="Logo/Kalite logo.webp" alt="Kalite"><span>Kalite</span></div>
+        <div class="logo-item"><img src="Logo/Keppel logo.webp" alt="Keppel"><span>Keppel</span></div>
+        <div class="logo-item"><img src="Logo/KFC logo.webp" alt="KFC"><span>KFC</span></div>
+        <div class="logo-item"><img src="Logo/Kingsmen logo.webp" alt="Kingsmen"><span>Kingsmen</span></div>
+        <div class="logo-item"><img src="Logo/Lazada Logo.webp" alt="Lazada"><span>Lazada</span></div>
+        <div class="logo-item"><img src="Logo/lotteria logo.webp" alt="Lotteria"><span>Lotteria</span></div>
+        <div class="logo-item"><img src="Logo/acecook logo.webp" alt="Acecook"><span>Acecook</span></div>
+        <div class="logo-item"><img src="Logo/Bellhome logo.webp" alt="Bellhome"><span>Bellhome</span></div>
+        <div class="logo-item"><img src="Logo/BIDV logo.webp" alt="BIDV"><span>BIDV</span></div>
+        <div class="logo-item"><img src="Logo/Colgate logo.webp" alt="Colgate"><span>Colgate</span></div>
+        <div class="logo-item"><img src="Logo/Cooken logo.webp" alt="Cooken"><span>Cooken</span></div>
+        <div class="logo-item"><img src="Logo/ctd.webp" alt="Coteccons"><span>Coteccons</span></div>
+        <div class="logo-item"><img src="Logo/Hasuta Logo.webp" alt="Hasuta"><span>Hasuta</span></div>
+        <div class="logo-item"><img src="Logo/henessy logo.webp" alt="Hennessy"><span>Hennessy</span></div>
+        <div class="logo-item"><img src="Logo/Himalaya logo.webp" alt="Himalaya"><span>Himalaya</span></div>
+        <div class="logo-item"><img src="Logo/Kalite logo.webp" alt="Kalite"><span>Kalite</span></div>
+        <div class="logo-item"><img src="Logo/Keppel logo.webp" alt="Keppel"><span>Keppel</span></div>
+        <div class="logo-item"><img src="Logo/KFC logo.webp" alt="KFC"><span>KFC</span></div>
+        <div class="logo-item"><img src="Logo/Kingsmen logo.webp" alt="Kingsmen"><span>Kingsmen</span></div>
+        <div class="logo-item"><img src="Logo/Lazada Logo.webp" alt="Lazada"><span>Lazada</span></div>
+        <div class="logo-item"><img src="Logo/lotteria logo.webp" alt="Lotteria"><span>Lotteria</span></div>
+      </div>
+    </div>
+
+    <div class="logo-rail rev">
+      <div class="logo-track">
+        <div class="logo-item"><img src="Logo/LV logo.webp" alt="Louis Vuitton"><span>Louis Vuitton</span></div>
+        <div class="logo-item"><img src="Logo/omachi logo.webp" alt="Omachi"><span>Omachi</span></div>
+        <div class="logo-item"><img src="Logo/Redbull logo.webp" alt="Red Bull"><span>Red Bull</span></div>
+        <div class="logo-item"><img src="Logo/Samsung logo.webp" alt="Samsung"><span>Samsung</span></div>
+        <div class="logo-item"><img src="Logo/Shopee logo.webp" alt="Shopee"><span>Shopee</span></div>
+        <div class="logo-item"><img src="Logo/Tech logo.webp" alt="Techcombank"><span>Techcombank</span></div>
+        <div class="logo-item"><img src="Logo/Tiktok logo.webp" alt="TikTok"><span>TikTok</span></div>
+        <div class="logo-item"><img src="Logo/UKG logo.webp" alt="UKG Group"><span>UKG Group</span></div>
+        <div class="logo-item"><img src="Logo/Unie logo.webp" alt="Unie"><span>Unie</span></div>
+        <div class="logo-item"><img src="Logo/Vifon Logo.webp" alt="Vifon"><span>Vifon</span></div>
+        <div class="logo-item"><img src="Logo/Vincom logo.webp" alt="Vincom"><span>Vincom</span></div>
+        <div class="logo-item"><img src="Logo/vinhomes logo.webp" alt="Vinhomes"><span>Vinhomes</span></div>
+        <div class="logo-item"><img src="Logo/Vinhomes smart City logo.webp" alt="Vinhomes Smart City"><span>Vinhomes Smart City</span></div>
+        <div class="logo-item"><img src="Logo/VP bank logo.webp" alt="VPBank"><span>VPBank</span></div>
+        <div class="logo-item"><img src="Logo/LV logo.webp" alt="Louis Vuitton"><span>Louis Vuitton</span></div>
+        <div class="logo-item"><img src="Logo/omachi logo.webp" alt="Omachi"><span>Omachi</span></div>
+        <div class="logo-item"><img src="Logo/Redbull logo.webp" alt="Red Bull"><span>Red Bull</span></div>
+        <div class="logo-item"><img src="Logo/Samsung logo.webp" alt="Samsung"><span>Samsung</span></div>
+        <div class="logo-item"><img src="Logo/Shopee logo.webp" alt="Shopee"><span>Shopee</span></div>
+        <div class="logo-item"><img src="Logo/Tech logo.webp" alt="Techcombank"><span>Techcombank</span></div>
+        <div class="logo-item"><img src="Logo/Tiktok logo.webp" alt="TikTok"><span>TikTok</span></div>
+        <div class="logo-item"><img src="Logo/UKG logo.webp" alt="UKG Group"><span>UKG Group</span></div>
+        <div class="logo-item"><img src="Logo/Unie logo.webp" alt="Unie"><span>Unie</span></div>
+        <div class="logo-item"><img src="Logo/Vifon Logo.webp" alt="Vifon"><span>Vifon</span></div>
+        <div class="logo-item"><img src="Logo/Vincom logo.webp" alt="Vincom"><span>Vincom</span></div>
+        <div class="logo-item"><img src="Logo/vinhomes logo.webp" alt="Vinhomes"><span>Vinhomes</span></div>
+        <div class="logo-item"><img src="Logo/Vinhomes smart City logo.webp" alt="Vinhomes Smart City"><span>Vinhomes Smart City</span></div>
+        <div class="logo-item"><img src="Logo/VP bank logo.webp" alt="VPBank"><span>VPBank</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-bg" id="about">
+  <div class="wrap">
+    <section class="sec">
+      <p class="sec-eye rv">Profile</p>
+      <h2 class="sec-title rv d1" data-i18n="about.title">Candidate Profile</h2>
+      <div class="about-grid">
+
+        <!-- LEFT: photo + stats -->
+        <div class="about-left">
+          <!-- Photo placeholder -->
+          <div class="photo-wrap rv" id="photo-wrap" role="button" tabindex="0"
+               aria-label="Profile photo" onclick="document.getElementById('photo-input').click()">
+            <!-- gold corner brackets -->
+            <div class="photo-corner photo-tl" aria-hidden="true"></div>
+            <div class="photo-corner photo-br" aria-hidden="true"></div>
+            <!-- placeholder content -->
+            <div class="photo-inner" id="photo-inner" style="display:none">
+              <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="26" cy="18" r="10" stroke="#C8AA6E" stroke-width="1.2" fill="none"/>
+                <path d="M6 46c0-11.046 8.954-20 20-20s20 8.954 20 20" stroke="#C8AA6E" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                <circle cx="26" cy="18" r="4" fill="rgba(200,170,110,0.15)"/>
+              </svg>
+              <span class="photo-hint" data-i18n="about.photo.hint">Click to upload photo</span>
+            </div>
+            <!-- actual photo preview (hidden until upload) -->
+            <img id="photo-preview" src="case-assets/profile-photo.webp" alt="Nguyễn Đình Đức" style="display:block">
+            <!-- hover overlay on preview -->
+            <div class="photo-overlay" id="photo-overlay" aria-hidden="true">
+              <span class="photo-overlay-txt" data-i18n="about.photo.change">Profile photo</span>
+            </div>
+          </div>
+          <input type="file" id="photo-input" accept="image/*" style="display:none" aria-label="Upload photo file">
+
+          <!-- Stats -->
+          <div class="stats">
+            <div class="stat rv d1">
+              <div class="stat-n">6+</div>
+              <div class="stat-l" data-i18n="about.stat1l">Years Experience</div>
+            </div>
+            <div class="stat rv d2">
+              <div class="stat-n">3</div>
+              <div class="stat-l" data-i18n="about.stat2l">In-house Brands</div>
+            </div>
+            <div class="stat rv d3">
+              <div class="stat-n">10+</div>
+              <div class="stat-l" data-i18n="about.stat3l">IMC Campaigns</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: bio -->
+        <div class="bio rv d2">
+          <p data-i18n="about.bio1" data-rich="1">
+            Brand Marketing Manager with <strong>6+ years of end-to-end IMC experience</strong> across campaign strategy,
+            creative direction, KOL and influencer management, content production, e-commerce, and performance analytics.
+            I have worked in both <strong>in-house</strong> and <strong>agency</strong> environments, which helps me connect
+            strategic planning with day-to-day execution and stakeholder management.
+          </p>
+          <p data-i18n="about.bio2" data-rich="1">
+            My recent work includes leading brand marketing across <strong>UKG Group</strong>, <strong>Bell Home Group</strong>,
+            and <strong>Ladi Group</strong>, where I owned full-funnel planning, budget control, go-to-market execution,
+            and cross-functional delivery. The portfolio below is curated to show my strength in
+            <strong>IMC planning that drives both brand momentum and measurable commercial results</strong>.
+          </p>
+          <div class="tags">
+            <span class="tag">IMC Planning</span>
+            <span class="tag">Brand Strategy</span>
+            <span class="tag">KOL / KOC</span>
+            <span class="tag">Content Direction</span>
+            <span class="tag">Media Buying</span>
+            <span class="tag">Video Production</span>
+            <span class="tag">Campaign Analytics</span>
+            <span class="tag">E-commerce</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+<!-- CAPABILITIES -->
+<div class="pkg-bg" id="capabilities">
+  <div class="pkg-video-wrap" aria-hidden="true">
+    <video class="pkg-video" autoplay muted loop playsinline preload="auto">
+      <source src="assets/aov-sinestrea-aov.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="pkg-vignette" aria-hidden="true"></div>
+  <div class="sec-full">
+    <div class="wrap">
+      <p class="sec-eye rv">Core Competencies</p>
+      <h2 class="sec-title rv d1" data-i18n="cap.title">Core Competencies</h2>
+    </div>
+    <div class="wrap">
+      <div class="pkg-grid">
+        <div class="pkg-card rv d1">
+          <div class="pkg-num">I</div>
+          <div class="pkg-tier" data-i18n="pkg1.tier">Tier 01 · Foundation</div>
+          <div class="pkg-name">Brand Strategist</div>
+          <div class="pkg-sub">Positioning · Architecture · Vision</div>
+          <div class="pkg-hr"></div>
+          <ul class="pkg-list">
+            <li data-i18n="pkg1.l1">End-to-end IMC planning across annual priorities, channel mix, and communication architecture</li>
+            <li data-i18n="pkg1.l2">Brand positioning and multi-product portfolio thinking for different audiences and moments</li>
+            <li data-i18n="pkg1.l3">Consumer insight, competitive mapping, and concept development from insight to Big Idea</li>
+          </ul>
+        </div>
+        <div class="pkg-card featured rv d2">
+          <div class="pkg-num">II</div>
+          <div class="pkg-tier" data-i18n="pkg2.tier">Tier 02 · Core — Primary Strength</div>
+          <div class="pkg-name">Campaign Director</div>
+          <div class="pkg-sub">Execution · KOL · Content · Media</div>
+          <div class="pkg-hr"></div>
+          <ul class="pkg-list">
+            <li data-i18n="pkg2.l1">Campaign leadership from brief, production, and launch through to post-campaign review</li>
+            <li data-i18n="pkg2.l2">KOL, KOC, and content orchestration across social, video, and activation formats</li>
+            <li data-i18n="pkg2.l3">Cross-functional execution with internal teams, agencies, and commercial stakeholders</li>
+          </ul>
+        </div>
+        <div class="pkg-card rv d3">
+          <div class="pkg-num">III</div>
+          <div class="pkg-tier" data-i18n="pkg3.tier">Tier 03 · Advanced</div>
+          <div class="pkg-name">Performance Analyst</div>
+          <div class="pkg-sub">Analytics · Optimization · Growth</div>
+          <div class="pkg-hr"></div>
+          <ul class="pkg-list">
+            <li data-i18n="pkg3.l1">Campaign measurement across reach, engagement, conversion, and ROI signals</li>
+            <li data-i18n="pkg3.l2">Budget control, efficiency analysis, and performance optimization across channels</li>
+            <li data-i18n="pkg3.l3">Post-campaign learning loops that sharpen the next plan, message, and media mix</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<div class="port-bg" id="work">
+  <div class="wrap">
+    <section class="sec">
+      <p class="sec-eye rv">Selected Work</p>
+      <h2 class="sec-title rv d1">Case Studies</h2>
+      <p class="bio rv d2" style="max-width:760px;margin:-22px 0 44px;color:var(--text-2)">
+        Four selected projects that best show my strength in IMC planning, campaign orchestration, and translating brand strategy into measurable commercial outcomes.
+      </p>
+      <div class="port-grid">
+        <div class="port-card rv">
+          <div class="port-num">01</div>
+          <div class="port-tag">Integrated Campaign · Consumer Appliances · Tet 2023</div>
+          <h3 class="port-title">Kalite<br>Tet IMC Campaign</h3>
+          <p class="port-desc" data-i18n="p1.desc">
+            Led a Tet-season IMC campaign for Kalite in a highly competitive air fryer market, translating a simple product truth
+            into a festive, culturally resonant message and orchestrating digital, content, KOL, and sales activation at scale.
+          </p>
+          <div class="port-media">
+            <img src="case-assets/kalite-khong-dau-thi-se-giau.webp" alt="Kalite campaign key visual">
+            <img src="case-assets/kalite-kl530-thanh-am-mien-nui.webp" alt="Kalite supporting visual">
+            <img src="case-assets/kalite-kl530-may-ep-cham.webp" alt="Kalite product communication">
+          </div>
+          <div class="port-metrics">
+            <div class="metric"><span class="metric-v">10B</span><span class="metric-l" data-i18n="m.vnd">Campaign Budget</span></div>
+            <div class="metric"><span class="metric-v">30%</span><span class="metric-l" data-i18n="m.sheets">Revenue Growth</span></div>
+            <div class="metric"><span class="metric-v">10+</span><span class="metric-l" data-i18n="m.waves">KOL Partners</span></div>
+          </div>
+          <div class="port-actions">
+            <a class="port-link" href="case-studies/kalite-campaign-tet-khong-dau-thi-se-giau.html">Open Case</a>
+          </div>
+        </div>
+        <div class="port-card rv d1">
+          <div class="port-num">02</div>
+          <div class="port-tag">Full-funnel Growth · Social Commerce · Bell Home</div>
+          <h3 class="port-title">Bell Home<br>Online Channel Build</h3>
+          <p class="port-desc" data-i18n="p2.desc">
+            Built Bell Home's online growth engine from the ground up: team structure, content system, e-commerce operations,
+            KOL collaboration, paid support, and repeatable workflows across TikTok, Facebook, Shopee, and live commerce.
+          </p>
+          <div class="port-media">
+            <img src="case-assets/bell-home-green-consumption.webp" alt="Bell Home campaign visual">
+            <img src="case-assets/bell-home-live-square.webp" alt="Bell Home live commerce">
+            <img src="case-assets/bell-home-kol-koc-live.webp" alt="Bell Home KOL livestream">
+          </div>
+          <div class="port-metrics">
+            <div class="metric"><span class="metric-v">50×</span><span class="metric-l" data-i18n="m.budget">Reach Growth</span></div>
+            <div class="metric"><span class="metric-v">300M</span><span class="metric-l" data-i18n="m.channels">Monthly Online Revenue</span></div>
+            <div class="metric"><span class="metric-v">20K</span><span class="metric-l" data-i18n="m.personas">TikTok Followers</span></div>
+          </div>
+          <div class="port-actions">
+            <a class="port-link" href="case-studies/bell-home-xay-kenh-online-tu-con-so-0.html">Open Case</a>
+          </div>
+        </div>
+        <div class="port-card rv d2">
+          <div class="port-num">03</div>
+          <div class="port-tag">FMCG Content System · Social Commerce · Oral Care</div>
+          <h3 class="port-title">Colgate<br>Multi-product Campaign</h3>
+          <p class="port-desc" data-i18n="p3.desc">
+            Planned and executed a TikTok-led campaign model for multiple Colgate product lines, balancing brand consistency
+            with sales conversion needs through livestream commerce, creator content, and structured asset production.
+          </p>
+          <div class="port-media">
+            <img src="case-assets/colgate-mega-livestream-hung-huynh.webp" alt="Colgate mega livestream">
+            <img src="case-assets/colgate-livestream-pewpew.webp" alt="Colgate creator livestream">
+            <img src="case-assets/colgate-slider-sc2.webp" alt="Colgate product creative">
+          </div>
+          <div class="port-metrics">
+            <div class="metric"><span class="metric-v">2B</span><span class="metric-l" data-i18n="m.proposal">6-month Sales Target</span></div>
+            <div class="metric"><span class="metric-v">Multi</span><span class="metric-l" data-i18n="m.enterprise">SKU Portfolio</span></div>
+            <div class="metric"><span class="metric-v">TikTok</span><span class="metric-l" data-i18n="m.live">Commerce Focus</span></div>
+          </div>
+          <div class="port-actions">
+            <a class="port-link" href="case-studies/colgate-multi-product-content-campaign.html">Open Case</a>
+          </div>
+        </div>
+        <div class="port-card rv d3">
+          <div class="port-num">04</div>
+          <div class="port-tag">Multi-brand Planning · GTM · Team Leadership</div>
+          <h3 class="port-title">Ladi Group<br>Multi-brand Ecosystem</h3>
+          <p class="port-desc" data-i18n="p4.desc">
+            Defined IMC direction for a multi-brand ecosystem spanning agency, homestay, and real estate businesses,
+            with direct ownership of planning cadence, budget control, research, launch support, and team leadership.
+          </p>
+          <div class="port-media">
+            <img src="case-assets/ladi-group-homestay.webp" alt="Ladi homestay brand">
+            <img src="case-assets/ladi-slider-atelier-011.webp" alt="Ladi property visual">
+            <img src="case-assets/ladi-group-vision-promise.webp" alt="Ladi brand direction">
+          </div>
+          <div class="port-metrics">
+            <div class="metric"><span class="metric-v">12</span><span class="metric-l" data-i18n="m.scenes">Team Members Led</span></div>
+            <div class="metric"><span class="metric-v">10</span><span class="metric-l" data-i18n="m.slides">Properties in 6 Months</span></div>
+            <div class="metric"><span class="metric-v">10%</span><span class="metric-l" data-i18n="m.bid">MoM Revenue Growth</span></div>
+          </div>
+          <div class="port-actions">
+            <a class="port-link" href="case-studies/ladi-group-multi-brand-ecosystem.html">Open Case</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-bg" id="contact">
+  <div class="contact-video-wrap" aria-hidden="true">
+    <video class="contact-video" autoplay muted loop playsinline preload="auto">
+      <source src="assets/lien-quan-wave-aovwave.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="contact-vignette" aria-hidden="true"></div>
+  <div class="wrap">
+    <section class="sec">
+      <p class="sec-eye rv">Contact</p>
+      <h2 class="sec-title rv d1" data-i18n="contact.title">Let's Talk</h2>
+      <div class="contact-grid">
+        <div class="contact-copy rv">
+          <p data-i18n="contact.copy" data-rich="1">
+            I am positioning this portfolio for <strong style="color:var(--gold)">Senior Marketing / IMC planning roles</strong>,
+            including opportunities in gaming, entertainment, and high-tempo consumer brands. You can review the attached resume,
+            open the case studies, or reach out directly below.
+          </p>
+          <div class="contact-details">
+            <div class="c-row"><span>Location</span><span data-i18n="contact.loc.val">Hanoi, Vietnam</span></div>
+            <div class="c-row"><span>Email</span><a href="mailto:ducnd.langmaster@gmail.com">ducnd.langmaster@gmail.com</a></div>
+            <div class="c-row"><span>Phone</span><a href="tel:+84963942665">+84 963 942 665</a></div>
+            <div class="c-row"><span>Resume</span><a href="resume.html">Open embedded resume</a></div>
+          </div>
+          <p class="contact-thanks">Thanks for visiting my portfolio — I would be happy to discuss the work in more detail.</p>
+          <div class="contact-credits">
+            <p class="contact-credits-copy">Special thanks to the friends and tools that helped me bring this portfolio to life.</p>
+            <div class="credit-icon-grid" aria-label="Support tools logo slots">
+              <div class="credit-slot logo-html"><img src="assets/tool-logos/html-logo.png" alt="HTML logo"><div class="credit-slot-label">HTML</div></div>
+              <div class="credit-slot logo-vscode"><img src="assets/tool-logos/vscode-logo.png" alt="VSCode logo"><div class="credit-slot-label">VSCODE</div></div>
+              <div class="credit-slot logo-claude"><img src="assets/tool-logos/claude-logo.png" alt="Claude Code logo"><div class="credit-slot-label">CLAUDE CODE</div></div>
+              <div class="credit-slot logo-codex"><img src="assets/tool-logos/codex-logo.png" alt="Codex logo"><div class="credit-slot-label">CODEX</div></div>
+              <div class="credit-slot logo-chatgpt"><img src="assets/tool-logos/chatgpt-logo.png" alt="ChatGPT logo"><div class="credit-slot-label">CHATGPT</div></div>
+              <div class="credit-slot logo-antigravity"><img src="assets/tool-logos/antigravity-logo.png" alt="Antigravity logo"><div class="credit-slot-label">ANTIGRAVITY</div></div>
+              <div class="credit-slot logo-hermes"><img src="assets/tool-logos/hermes-logo.png" alt="Hermes logo"><div class="credit-slot-label">HERMES</div></div>
+            </div>
+          </div>
+        </div>
+        <form class="form rv d2" id="contact-form" novalidate>
+          <div class="fg">
+            <label class="fl" for="cf-name" data-i18n="fl.name">Full Name</label>
+            <input class="fi" type="text" id="cf-name" data-i18n="fph.name" placeholder="Your name" required>
+          </div>
+          <div class="fg">
+            <label class="fl" for="cf-email">Email</label>
+            <input class="fi" type="email" id="cf-email" placeholder="recruiter@company.com" required>
+          </div>
+          <div class="fg">
+            <label class="fl" for="cf-msg" data-i18n="fl.msg">Message</label>
+            <textarea class="ft" id="cf-msg" data-i18n="fph.msg" placeholder="Let's schedule a conversation." required></textarea>
+          </div>
+          <button class="fsub" type="submit" id="fsub" data-i18n="form.submit">Send Message →</button>
+          <p id="form-ok" data-i18n="form.ok">✓ Received. I'll be in touch as soon as possible.</p>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-l">© 2026 Nguyễn Đình Đức</div>
+  <div class="footer-r" data-i18n="footer.r">IMC & Brand Marketing Portfolio · Hanoi</div>
+</footer>
+
+<script>
+/* ── i18n DICTIONARY ─────────────────────────────────────────── */
+const LANG = {
+  vi: {
+    'nav.about':'Về Tôi','nav.cap':'Năng Lực','nav.work':'Case Studies','nav.contact':'Liên Hệ',
+    'hero.sub':'6 Năm · IMC Strategy · Brand &amp; Campaign',
+    'hero.tagline':'Biến tầm nhìn thương hiệu thành <em>những chiến dịch chạm đến hàng triệu người</em> — từ kiến trúc IMC, triển khai sáng tạo, đến analytics cho vòng lặp tiếp theo.',
+    'hero.btn1':'Xem Case Studies','hero.btn2':'Liên Hệ Tôi',
+    'mq.eye':'Đã Làm Việc Cùng',
+    'about.title':'Chân Dung Ứng Viên',
+    'about.stat1l':'Năm Kinh Nghiệm','about.stat2l':'Thương Hiệu In-house','about.stat3l':'Chiến Dịch IMC',
+    'about.photo.hint':'Nhấn để thêm ảnh','about.photo.change':'Đổi ảnh',
+    'about.bio1':'Tôi là một <strong>Senior Marketing Professional</strong> tại Hà Nội với hơn 6 năm kinh nghiệm trải dài từ quản lý thương hiệu, truyền thông tích hợp, thương mại điện tử đến production agency. Hành trình của tôi đi qua cả môi trường <strong>in-house</strong> lẫn <strong>agency</strong> — mang lại sự am hiểu kép giữa tư duy thương hiệu chiến lược và năng lực triển khai chiến dịch thực chiến.',
+    'about.bio2':'Tôi từng lãnh đạo marketing thương hiệu tại <strong>UKG Group</strong> (ba thương hiệu điện gia dụng), dẫn dắt chiến lược digital tại <strong>Bell Home Group</strong> và <strong>Ladi Group</strong>, và hiện đang phụ trách production & campaign tại <strong>Cooken</strong> và <strong>Dukick</strong>. Tôi có đam mê sâu sắc với không gian gaming và đã phát triển một <strong>IMC Plan 2026 toàn diện cho Liên Quân Mobile</strong> như một case study riêng cho đơn ứng tuyển này.',
+    'cap.title':'Năng Lực Cốt Lõi',
+    'pkg1.tier':'Tier 01 · Foundation',
+    'pkg1.l1':'Lập kế hoạch IMC từ đầu đến cuối — định mục tiêu, chiến lược kênh, brand calendar năm',
+    'pkg1.l2':'Kiến trúc thương hiệu đa sản phẩm và đa thị trường mục tiêu',
+    'pkg1.l3':'Nghiên cứu consumer insight, phát triển persona và phân tích xu hướng',
+    'pkg1.l4':'Phân tích bối cảnh cạnh tranh và định vị thương hiệu sắc nét',
+    'pkg1.l5':'Originate communication concept từ insight đến Big Idea với rationale rõ ràng',
+    'pkg2.tier':'Tier 02 · Core — Thế Mạnh Chủ Đạo',
+    'pkg2.l1':'Quản lý chiến dịch end-to-end — từ brief đến post-campaign reporting',
+    'pkg2.l2':'Chiến lược KOL/KOC: phân tầng, booking, briefing và tracking hiệu quả',
+    'pkg2.l3':'Chỉ đạo nội dung: video, social, copywriting, art direction, influencer activation',
+    'pkg2.l4':'Media buying — Facebook, TikTok, cross-platform với tối ưu ngân sách',
+    'pkg2.l5':'Align stakeholder xuyên suốt Creative, Product, Legal và agency partner',
+    'pkg3.tier':'Tier 03 · Advanced',
+    'pkg3.l1':'Đo lường campaign: Reach, SOV, ER, CTR, CVR, ROAS — dashboard-driven',
+    'pkg3.l2':'Funnel math, lift-test và phân tích attribution để tối ưu hiệu suất',
+    'pkg3.l3':'Vòng lặp học tập sau chiến dịch — áp dụng insight vào lần triển khai tiếp theo',
+    'pkg3.l4':'Quản lý và phân tích hiệu quả ngân sách lớn (framework 60B+ VND)',
+    'pkg3.l5':'Đo lường brand health: nhận biết, nhận thức, consideration score theo thời gian',
+    'p1.desc':'Phát triển kế hoạch truyền thông tích hợp toàn năm cho thị trường Việt Nam của AOV — bao gồm brand calendar, channel mix, phân tầng KOL, content pillars và activation cho 4 thời điểm mùa vụ trọng điểm. Framework ngân sách 60 tỷ VND với 8-sheet workbook phân tích chi tiết theo từng giai đoạn và kênh.',
+    'p2.desc':'Xây dựng chiến lược marketing digital toàn diện 2 năm — gồm phân tích đối thủ, 3 customer persona chi tiết, Big Idea "Vững Bước Việt", kế hoạch kênh 12 tháng trên 6 nền tảng và phân bổ ngân sách 10 tỷ VND. Hoàn chỉnh dưới dạng 2 deck trình bày Canva sẵn sàng cho stakeholder.',
+    'p3.desc':'Dẫn dắt toàn bộ quá trình phát triển pitch cho giải pháp AI livestream thương mại nhắm vào thương hiệu automotive. Output gồm đề xuất 40 chương, mockup kiến trúc giải pháp SVG, deck Canva 16 slide và Excel analytics template phục vụ trình bày client — trong timeline gấp.',
+    'p4.desc':'Phát triển đầy đủ hồ sơ dự thầu cho dự án brand film 2026 của VPBank — bao gồm creative proposal, kịch bản quay 25 cảnh, yêu cầu kỹ thuật sản xuất, và deck pitch 16 slide. Gói hồ sơ được nộp trong vòng đấu thầu cạnh tranh với nhiều agency.',
+    'm.vnd':'Ngân Sách Framework','m.sheets':'Sheet Workbook Excel','m.waves':'Đợt Campaign',
+    'm.budget':'Ngân Sách VND','m.channels':'Kênh Triển Khai','m.personas':'Customer Personas',
+    'm.proposal':'Chương Đề Xuất','m.enterprise':'Enterprise Pitch','m.live':'AI Commerce',
+    'm.scenes':'Cảnh Kịch Bản','m.slides':'Slide Pitch Deck','m.bid':'Hồ Sơ Dự Thầu',
+    'contact.title':'Cùng Nói Chuyện',
+    'contact.copy':'Tôi đang ứng tuyển vị trí <strong style="color:var(--gold)">Senior Marketing (ABM)</strong> tại Garena Arena of Valor và rất muốn có cơ hội trình bày tư duy chiến dịch của mình trực tiếp với team. Để lại thông tin hoặc liên hệ trực tiếp qua các kênh dưới đây.',
+    'contact.loc.val':'Hà Nội, Việt Nam',
+    'fl.name':'Họ &amp; Tên','fl.msg':'Lời Nhắn',
+    'fph.name':'Nguyen Van A','fph.msg':'Hẹn gặp để trao đổi thêm...',
+    'form.submit':'Gửi Tin Nhắn →','form.ok':'✓ Đã nhận. Tôi sẽ phản hồi sớm nhất có thể.',
+    'footer.r':'AOV Senior Marketing Application · Hà Nội'
+  },
+  en: {
+    'nav.about':'About','nav.cap':'Capabilities','nav.work':'Case Studies','nav.contact':'Contact',
+    'hero.sub':'6+ Years · IMC Planning · Brand &amp; Growth',
+    'hero.tagline':'Building <em>integrated campaigns with clear business impact</em> — from annual planning, go-to-market strategy, and KOL orchestration to content systems, sales activation, and performance analysis.',
+    'hero.btn1':'View Case Studies','hero.btn2':'View Resume',
+    'mq.eye':'Brands I\'ve Worked With',
+    'about.title':'Candidate Profile',
+    'about.stat1l':'Years Experience','about.stat2l':'In-house Brands','about.stat3l':'IMC Campaigns',
+    'about.photo.hint':'Click to upload photo','about.photo.change':'Change photo',
+    'about.bio1':'Brand Marketing Manager with <strong>6+ years of end-to-end IMC experience</strong> across campaign strategy, creative direction, KOL and influencer management, content production, e-commerce, and performance analytics. I have worked in both <strong>in-house</strong> and <strong>agency</strong> environments, which helps me connect strategic planning with day-to-day execution and stakeholder management.',
+    'about.bio2':'My recent work includes leading brand marketing across <strong>UKG Group</strong>, <strong>Bell Home Group</strong>, and <strong>Ladi Group</strong>, where I owned full-funnel planning, budget control, go-to-market execution, and cross-functional delivery. The portfolio below is curated to show my strength in <strong>IMC planning that drives both brand momentum and measurable commercial results</strong>.',
+    'cap.title':'Core Competencies',
+    'pkg1.tier':'Tier 01 · Foundation',
+    'pkg1.l1':'End-to-end IMC planning — goal-setting, channel strategy, full-year brand calendar',
+    'pkg1.l2':'Multi-product brand architecture across diverse consumer categories and segments',
+    'pkg1.l3':'Consumer insight research, persona development, and market trend analysis',
+    'pkg1.l4':'Competitive landscape mapping and sharp brand positioning strategy',
+    'pkg1.l5':'Originating communication concepts from insight to Big Idea with clear rationale',
+    'pkg2.tier':'Tier 02 · Core — Primary Strength',
+    'pkg2.l1':'End-to-end campaign management — from creative brief to post-campaign reporting',
+    'pkg2.l2':'KOL/KOC strategy: tiering, booking, briefing, and performance tracking',
+    'pkg2.l3':'Content direction: video, social, copywriting, art direction, influencer activation',
+    'pkg2.l4':'Media buying — Facebook, TikTok, cross-platform planning with budget optimization',
+    'pkg2.l5':'Cross-functional alignment across Creative, Product, Legal, and agency partners',
+    'pkg3.tier':'Tier 03 · Advanced',
+    'pkg3.l1':'Campaign measurement: Reach, SOV, ER, CTR, CVR, ROAS — dashboard-driven reporting',
+    'pkg3.l2':'Funnel math, lift tests, and attribution analysis for performance optimization',
+    'pkg3.l3':'Post-campaign learning loops — applying insights to the next campaign cycle',
+    'pkg3.l4':'Budget management and efficiency analysis (60B+ VND frameworks)',
+    'pkg3.l5':'Brand health tracking: awareness, perception, and consideration scores over time',
+    'p1.desc':'Led a Tet-season IMC campaign for Kalite in a highly competitive air fryer market, translating a simple product truth into a festive, culturally resonant message and orchestrating digital, content, KOL, and sales activation at scale.',
+    'p2.desc':'Built Bell Home\'s online growth engine from the ground up: team structure, content system, e-commerce operations, KOL collaboration, paid support, and repeatable workflows across TikTok, Facebook, Shopee, and live commerce.',
+    'p3.desc':'Planned and executed a TikTok-led campaign model for multiple Colgate product lines, balancing brand consistency with sales conversion needs through livestream commerce, creator content, and structured asset production.',
+    'p4.desc':'Defined IMC direction for a multi-brand ecosystem spanning agency, homestay, and real estate businesses, with direct ownership of planning cadence, budget control, research, launch support, and team leadership.',
+    'm.vnd':'Campaign Budget','m.sheets':'Revenue Growth','m.waves':'KOL Partners',
+    'm.budget':'Reach Growth','m.channels':'Monthly Online Revenue','m.personas':'TikTok Followers',
+    'm.proposal':'6-month Sales Target','m.enterprise':'SKU Portfolio','m.live':'Commerce Focus',
+    'm.scenes':'Team Members Led','m.slides':'Properties in 6 Months','m.bid':'MoM Revenue Growth',
+    'contact.title':'Let\'s Talk',
+    'contact.copy':'I am positioning this portfolio for <strong style="color:var(--gold)">Senior Marketing / IMC planning roles</strong>, including opportunities in gaming, entertainment, and high-tempo consumer brands. You can review the attached resume, open the case studies, or reach out directly below.',
+    'contact.loc.val':'Hanoi, Vietnam',
+    'fl.name':'Full Name','fl.msg':'Message',
+    'fph.name':'Your Name','fph.msg':'Schedule a call to discuss further...',
+    'form.submit':'Send Message →','form.ok':'✓ Received. I\'ll be in touch as soon as possible.',
+    'footer.r':'IMC & Brand Marketing Portfolio · Hanoi'
+  }
+};
+
+/* ── SET LANGUAGE ────────────────────────────────────────────── */
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  const dict = LANG[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    const val = dict[key];
+    if (val === undefined) return;
+    const isInput = el.tagName === 'INPUT' || el.tagName === 'TEXTAREA';
+    const isRich  = el.dataset.rich === '1';
+    if (isInput) {
+      el.placeholder = val;
+    } else if (isRich) {
+      el.innerHTML = val;
+    } else {
+      el.innerHTML = val; // allows &amp; entities
+    }
+  });
+  // update toggle buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const active = btn.dataset.lang === lang;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', active);
+  });
+  // update html lang attr
+  document.documentElement.lang = lang === 'vi' ? 'vi' : 'en';
+}
+
+// wire lang buttons
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+setLang(currentLang);
+
+// give each section line its own motion rhythm so the page feels less synchronized
+document.querySelectorAll('.about-bg,.brands,.pkg-bg,.port-bg,.contact-bg').forEach((section, index) => {
+  const rand = (min, max) => (Math.random() * (max - min) + min).toFixed(2) + 's';
+  const offset = (base) => (base + index * 0.35).toFixed(2) + 's';
+  section.style.setProperty('--line-drift-duration', rand(10, 16));
+  section.style.setProperty('--line-sweep-duration', rand(5.4, 8.8));
+  section.style.setProperty('--line-drift-delay', offset(Math.random() * 2.5));
+  section.style.setProperty('--line-sweep-delay', offset(Math.random() * 3.5));
+  section.style.setProperty('--line-drift-duration-bottom', rand(12, 19));
+  section.style.setProperty('--line-sweep-duration-bottom', rand(6.2, 10.5));
+  section.style.setProperty('--line-drift-delay-bottom', offset(Math.random() * 2.8));
+  section.style.setProperty('--line-sweep-delay-bottom', offset(Math.random() * 4.2));
+});
+
+/* ── NAV SCROLL ──────────────────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 56);
+}, { passive: true });
+
+/* ── SCROLL REVEAL ───────────────────────────────────────────── */
+const rvEls = document.querySelectorAll('.rv');
+const rvObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1 });
+rvEls.forEach(el => rvObs.observe(el));
+
+/* ── PHOTO UPLOAD ────────────────────────────────────────────── */
+const photoInput   = document.getElementById('photo-input');
+const photoWrap    = document.getElementById('photo-wrap');
+const photoPreview = document.getElementById('photo-preview');
+const photoInner   = document.getElementById('photo-inner');
+const photoOverlay = document.getElementById('photo-overlay');
+
+photoInput.addEventListener('change', function() {
+  const file = this.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    photoPreview.src = e.target.result;
+    photoPreview.style.display = 'block';
+    photoInner.style.display = 'none';
+    photoOverlay.style.display = 'flex';
+  };
+  reader.readAsDataURL(file);
+});
+
+// keyboard accessibility for photo wrap
+photoWrap.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    photoInput.click();
+  }
+});
+
+/* ── CONTACT FORM ────────────────────────────────────────────── */
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('fsub');
+  const okEl = document.getElementById('form-ok');
+  btn.textContent = currentLang === 'vi' ? 'Đang gửi...' : 'Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.style.display = 'none';
+    okEl.style.display = 'block';
+  }, 900);
+});
+</script>
+</body>
+</html>
